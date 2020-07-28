@@ -9,7 +9,7 @@ class UserListPage extends StatefulWidget {
 }
 
 class _UserListPage extends State<UserListPage> {
-  var users = userList;
+  var users = User;
 
   @override
   Widget build(BuildContext context) {

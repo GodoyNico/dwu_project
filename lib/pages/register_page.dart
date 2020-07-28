@@ -11,7 +11,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _form = GlobalKey<FormState>();
-  User _user;
+  User _user = User();
   final _nameController = TextEditingController();
   final _surnameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -19,7 +19,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final _salaryController = TextEditingController();
   final _genderController = TextEditingController();
   bool _controller = false;
-  String dropdownValue = 'Escolher';
+  //String dropdownValue = 'Escolher';
 
   @override
   void dispose() {
@@ -34,8 +34,8 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       key: _scaffoldKey,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.teal,
         title: Text('Cadastro de Usuário'),
@@ -159,6 +159,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         labelStyle: TextStyle(color: Colors.teal),
                         labelText: 'Salário',
                       ),
+                      keyboardType: TextInputType.number,
                       validator: (value) {
                         //TODO: Formatar para ser um double
                         /* if (value.length == 0)
@@ -213,7 +214,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         labelText: 'Sexo',
                       ),
                       validator: (value) {
-                        if (value.length == 0) return 'Campo obrigatório';
+                        //if (value.length == 0) return 'Campo obrigatório';
+                        if (value.isEmpty) return 'Entrada inválida';
                         if (value.length > 10) return 'Sexo muito longo';
                         return null;
                       },
