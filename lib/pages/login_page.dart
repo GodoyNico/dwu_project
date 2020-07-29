@@ -68,7 +68,6 @@ class _LoginPageState extends State<LoginPage> {
                   prefixIcon: Icon(Icons.person),
                   labelText: 'Usuário',
                   labelStyle: TextStyle(color: Colors.teal),
-                  //floatingLabelBehavior: FloatingLabelBehavior.never,
                   filled: true,
                 ),
                 controller: _usernameController,
@@ -82,7 +81,6 @@ class _LoginPageState extends State<LoginPage> {
                   prefixIcon: Icon(Icons.lock_outline),
                   labelText: 'Senha',
                   labelStyle: TextStyle(color: Colors.teal),
-                  //floatingLabelBehavior: FloatingLabelBehavior.never,
                   filled: true,
                 ),
                 obscureText: true,
@@ -92,7 +90,6 @@ class _LoginPageState extends State<LoginPage> {
               OutlineButton(
                 onPressed: _signIn,
                 borderSide: BorderSide(color: Colors.teal),
-                //shape: StadiumBorder(),
                 child: Text(
                   'Entrar',
                   style: TextStyle(color: Colors.teal, fontSize: 18),
