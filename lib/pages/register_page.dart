@@ -39,7 +39,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    UserRepository();
     return Scaffold(
       key: _scaffoldKey,
       resizeToAvoidBottomInset: false,
@@ -108,7 +107,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 ],
               ),
               SizedBox(height: 10),
-              //TODO: Campo não obrigatório
               TextFormField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -154,7 +152,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   SizedBox(width: 10),
-                  //TODO: Campo não obrigatório
                   Expanded(
                     flex: 4,
                     child: TextFormField(
@@ -172,9 +169,6 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       keyboardType: TextInputType.number,
                       validator: (value) {
-                        //TODO: Formatar para ser um double
-                        /* if (value.length == 0)
-                          return double.tryParse(_salaryController) + 0.00; */
                         if (value.length >= 10) return 'Salário muito grande';
                         return null;
                       },
@@ -184,34 +178,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   SizedBox(width: 10),
-                  //TODO: Teste usando dropdownButton, ficou estranho
-                  /* Expanded(
-                    child: DropdownButton<String>(
-                      icon: Icon(Icons.arrow_downward),
-                      value: dropdownValue,
-                      iconSize: 30,
-                      elevation: 16,
-                      underline: Container(
-                        height: 2,
-                        color: Colors.teal,
-                      ),
-                      style: TextStyle(color: Colors.teal),
-                      onChanged: (String newValue) {
-                        setState(() {
-                          dropdownValue = newValue;
-                        });
-                      },
-                      items: <String>['Escolher', 'Masculino', 'Feminino']
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-
-                      //items: <String> ['Escolher', 'Masculino', 'Feminino'].map<DropdownMenuItem<String>> (String value) {return DropdownMenuItem<String>(value: value, child: Text(value),)}, onChanged: null
-                    ),
-                  ), */
                   DropdownButtonFormField<String>(
                     value: null,
                     style: TextStyle(color: Colors.teal),
@@ -240,8 +206,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   )
                 ],
               ),
-              //TODO: Ver essa sizedbox
-              //SizedBox(width: 15),
               Container(
                 width: double.maxFinite,
                 child: OutlineButton(
@@ -312,6 +276,6 @@ class _RegisterPageState extends State<RegisterPage> {
     }
     _form.currentState.save();
 
-    _controller = await repository.newUser(_user);
+    //_controller = await repository.newUser(_user);
   }
 }

@@ -1,5 +1,5 @@
-import 'package:dwu_project/db/data.dart';
 import 'package:dwu_project/entities/user.dart';
+import 'package:dwu_project/entities/user_repository.dart';
 import 'package:dwu_project/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +9,8 @@ class UserListPage extends StatefulWidget {
 }
 
 class _UserListPage extends State<UserListPage> {
-  var users = User;
+  var user = User;
+  UserRepository _repository;
 
   @override
   Widget build(BuildContext context) {
@@ -25,36 +26,41 @@ class _UserListPage extends State<UserListPage> {
           },
         ),
       ),
-      body: ListView(
-        children: users.map((user) {
-          return ListTile(
-            leading: Icon(Icons.person),
-            //TODO: Avatar variado conforme cadastro
-            /* CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://gravatar.com/avatar/${(email ?? '').toMD5()}?d=robohash'),
-            ), */
-            title: Text(
-                '${user.name} ${user.surname}, ${user.age}, ${user.gender}'),
-            subtitle: Text(user.email),
-            onTap: () {
-              //TODO: Edição de usuário
-            },
-            onLongPress: () {
-              setState(() {
-                users.remove(user);
-              });
-            },
+      body: FutureBuilder<List<User>>(
+        future: _repository.getUsers(),
+        initialData: null,
+        builder: (_, snapshot) {
+          if (snapshot.hasError) {
+            return Center(
+              child: Text(snapshot.error),
+            );
+          }
+
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          return ListView(
+            children: snapshot.data.map((user) {
+              return ListTile(
+                leading: Icon(Icons.person),
+                title: Text(
+                    '${user.name} ${user.surname}, ${user.age}, ${user.gender}'),
+                subtitle: Text(user.email),
+                onTap: () {},
+                onLongPress: () {},
+              );
+            }).toList(),
           );
-        }).toList(),
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           var user =
               await Navigator.of(context).pushNamed(AppRotas.REGISTER_PAGE);
-          setState(() {
-            users.add(user as User);
-          });
+          setState(() {});
         },
         child: Icon(Icons.add),
       ),
