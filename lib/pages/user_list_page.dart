@@ -27,8 +27,8 @@ class _UserListPage extends State<UserListPage> {
         ),
       ),
       body: FutureBuilder<List<User>>(
-        future: _repository.getUsers(),
-        initialData: null,
+        //future: _repository.getUsers(),
+        //initialData: null,
         builder: (_, snapshot) {
           if (snapshot.hasError) {
             return Center(

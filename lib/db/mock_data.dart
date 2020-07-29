@@ -1,4 +1,3 @@
-//Classe com único usuário e senha que consegue acessar a aplicação
 abstract class MockData {
   static UserLog logedUser;
 

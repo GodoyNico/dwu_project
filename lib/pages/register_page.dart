@@ -177,35 +177,41 @@ class _RegisterPageState extends State<RegisterPage> {
                       },
                     ),
                   ),
-                  SizedBox(width: 10),
-                  DropdownButtonFormField<String>(
+                ],
+              ),
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal),
+                  ),
+                  labelStyle: TextStyle(color: Colors.teal),
+                ),
+                value: null,
+                style: TextStyle(color: Colors.teal),
+                isExpanded: true,
+                onChanged: (String newValue) {
+                  print(newValue);
+                },
+                onSaved: (valor) {
+                  _user.gender = valor;
+                },
+                validator: (v) {},
+                items: [
+                  DropdownMenuItem<String>(
                     value: null,
-                    style: TextStyle(color: Colors.teal),
-                    isExpanded: true,
-                    onChanged: (String newValue) {
-                      print(newValue);
-                    },
-                    onSaved: (valor) {
-                      _user.gender = valor;
-                    },
-                    validator: (v) {},
-                    items: [
-                      DropdownMenuItem<String>(
-                        value: null,
-                        child: Text('Escolher'),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: 'F',
-                        child: Text('Feminino'),
-                      ),
-                      DropdownMenuItem<String>(
-                        value: 'M',
-                        child: Text('Masculino'),
-                      )
-                    ],
+                    child: Text(' Escolher'),
+                  ),
+                  DropdownMenuItem<String>(
+                    value: 'F',
+                    child: Text(' Feminino'),
+                  ),
+                  DropdownMenuItem<String>(
+                    value: 'M',
+                    child: Text(' Masculino'),
                   )
                 ],
               ),
+              SizedBox(width: 10),
               Container(
                 width: double.maxFinite,
                 child: OutlineButton(
@@ -276,6 +282,6 @@ class _RegisterPageState extends State<RegisterPage> {
     }
     _form.currentState.save();
 
-    //_controller = await repository.newUser(_user);
+    _controller = await _userRepository.newUser(_user);
   }
 }
