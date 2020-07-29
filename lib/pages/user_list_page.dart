@@ -18,7 +18,6 @@ class _UserListPage extends State<UserListPage> {
       appBar: AppBar(
         backgroundColor: Colors.teal,
         title: Text('Usuários cadastrados'),
-        //centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.exit_to_app),
           onPressed: () {

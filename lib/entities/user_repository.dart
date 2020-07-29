@@ -26,4 +26,19 @@ class UserRepository {
     );
     return rows > 0;
   }
+
+  Future<List<User>> getUsers() async {
+    try {
+      var db = await _dbHelper.obtemDB();
+      var data = await db.query('user');
+
+      print(data);
+
+      var users = data.map((e) => User.fromMap(e)).toList();
+      return users;
+    } catch (e) {
+      print(e);
+      return [];
+    }
+  }
 }
