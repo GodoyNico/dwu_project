@@ -209,8 +209,8 @@ class _RegisterPageState extends State<RegisterPage> {
               Container(
                 width: double.maxFinite,
                 child: OutlineButton(
-                  onPressed: () async {
-                    await saveUser();
+                  onPressed: () {
+                    saveUser();
                     if (_controller) {
                       Navigator.of(context)
                           .pushNamed(AppRotas.REGISTER_LIST_PAGE);
